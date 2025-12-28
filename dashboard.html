@@ -24,16 +24,23 @@
       </div>
     </h2>
 
-    <div class="user">
-      <div class="greeting" id="greetingText"></div>
-      <div class="username"><span id="username"></span></div>
-      <div class="quote" id="quoteText"></div>
-    </div>
+    <div class="user-card">
+  <div class="user-avatar">
+    <span id="userInitial">S</span>
+  </div>
+
+  <div class="user-meta">
+    <div class="greeting" id="greetingText"></div>
+    <div class="username" id="username"></div>
+    <div class="quote" id="quoteText"></div>
+  </div>
+</div>
+
 
     <nav>
       <div id="nav-dashboard" class="nav-item active"
            onclick="showSection('dashboard')">Dashboard</div>
-      <div id="nav-calendar" class="nav-item"
+      <div id="nav-calendar" class="nav-item" hidden
            onclick="showSection('calendar')">Calendar</div>
       <div id="nav-progress" class="nav-item"
            onclick="showSection('progress')">Progress</div>
@@ -64,18 +71,38 @@
           <div id="calendar" class="calendar"></div>
         </div>
         <div class="calendar-habits-wrapper">
-          <h4>Habits on this day</h4>
+          <h4>Tasks Completed on this day</h4>
           <ul id="calendarHabits" class="habits"></ul>
         </div>
       </div>
     </section>
 
-    <section id="section-progress" class="block" hidden>
-      <p id="streakStatus"></p>
-      <p id="globalStreak"></p>
-      <p id="longestStreak"></p>
-      <div id="habitStreaks"></div>
-    </section>
+    <section id="section-progress" class="block progress-card" hidden>
+
+  <div class="progress-header">
+    <h3>Progress Overview</h3>
+    <p id="streakStatus" class="streak-status"></p>
+  </div>
+
+  <div class="streak-metrics">
+    <div class="streak-box primary">
+      <span class="label">Current Streak</span>
+      <span id="globalStreak" class="value"></span>
+    </div>
+
+    <div class="streak-box secondary">
+      <span class="label">Longest Streak</span>
+      <span id="longestStreak" class="value"></span>
+    </div>
+  </div>
+
+  <div class="habit-streaks">
+    <h4>Habit-wise Streaks</h4>
+    <div id="habitStreaks" class="habit-streak-list"></div>
+  </div>
+
+</section>
+
   </main>
 
 </div>
@@ -86,9 +113,13 @@
 <script src="app.js"></script>
 <script>
   const email = localStorage.getItem("email");
-  document.getElementById("username").innerText =
-    email ? email.split("@")[0] : "User";
+  const name = email ? email.split("@")[0] : "User";
+
+  document.getElementById("username").innerText = name;
+  document.getElementById("userInitial").innerText =
+    name.charAt(0).toUpperCase();
 </script>
+
 
 </body>
 </html>
