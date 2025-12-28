@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Habit Control</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <h2 class="logo">Habit.</h2>
+
+    <div class="user">
+      <div class="greeting" id="greetingText"></div>
+      <div class="username"><span id="username"></span></div>
+      <div class="quote" id="quoteText"></div>
+    </div>
+
+    <nav>
+      <div id="nav-dashboard" class="nav-item active"
+           onclick="showSection('dashboard')">Dashboard</div>
+      <div id="nav-calendar" class="nav-item"
+           onclick="showSection('calendar')">Calendar</div>
+      <div id="nav-progress" class="nav-item"
+           onclick="showSection('progress')">Progress</div>
+    </nav>
+
+    <button class="logout" onclick="logout()">Logout</button>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <button class="mobile-menu-btn" onclick="toggleSidebar()">☰</button>
+
+    <section id="section-dashboard" class="block">
+      <h3>Create Habit</h3>
+      <input id="habit" placeholder="Habit name" />
+      <button onclick="addHabit()">Add Habit</button>
+
+      <hr style="margin:20px 0">
+
+      <h3>Today’s Habits</h3>
+      <ul id="habitList" class="habits habits-horizontal"></ul>
+    </section>
+
+    <section id="section-calendar" class="block calendar-section" hidden>
+      <h3 id="selectedDateText">Select a date</h3>
+      <div class="calendar-layout">
+        <div class="calendar-wrapper">
+          <div id="calendar" class="calendar"></div>
+        </div>
+        <div class="calendar-habits-wrapper">
+          <h4>Habits on this day</h4>
+          <ul id="calendarHabits" class="habits"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="section-progress" class="block" hidden>
+      <p id="streakStatus"></p>
+      <p id="globalStreak"></p>
+      <p id="longestStreak"></p>
+      <div id="habitStreaks"></div>
+    </section>
+  </main>
+
+</div>
+
+<!-- OVERLAY (MUST BE OUTSIDE .app) -->
+<div class="sidebar-overlay" onclick="closeSidebar()"></div>
+
+<script src="app.js"></script>
+<script>
+  const email = localStorage.getItem("email");
+  document.getElementById("username").innerText =
+    email ? email.split("@")[0] : "User";
+</script>
+
+</body>
+</html>

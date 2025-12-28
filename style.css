@@ -1,0 +1,330 @@
+:root {
+  --bg: #0f172a;
+  --sidebar: #111827;
+  --card: #ffffff;
+  --primary: #38bdf8;
+  --accent: #22c55e;
+  --danger: #ef4444;
+  --muted: #94a3b8;
+
+  --text-dark: #0f172a;
+  --text-light: #e5e7eb;
+}
+
+/* =====================
+   GLOBAL RESET
+===================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text-light);
+}
+
+/* =====================
+   APP LAYOUT
+===================== */
+.app {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* =====================
+   SIDEBAR
+===================== */
+.sidebar {
+  width: 240px;
+  background: linear-gradient(180deg, #0b1220, #111827);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 28px;
+}
+
+/* User block */
+.user {
+  margin-bottom: 24px;
+}
+
+.greeting {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.username {
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+.quote {
+  font-size: 0.75rem;
+  margin-top: 6px;
+  opacity: 0.7;
+  line-height: 1.4;
+}
+
+/* Navigation */
+.nav-item {
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 6px;
+  color: var(--muted);
+}
+
+.nav-item.active,
+.nav-item:hover {
+  background: #1f2937;
+  color: var(--text-light);
+}
+
+/* Logout */
+.logout {
+  margin-top: auto;
+  background: var(--danger);
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+}
+
+/* =====================
+   MAIN CONTENT
+===================== */
+.main {
+  flex: 1;
+  padding: 28px;
+  background: linear-gradient(180deg, #f8fafc, #eef2f7);
+  color: var(--text-dark);
+}
+
+/* Mobile menu button */
+.mobile-menu-btn {
+  display: none;
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+
+/* =====================
+   BLOCKS / CARDS
+===================== */
+.block {
+  background: var(--card);
+  padding: 20px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.block h3,
+.block h4 {
+  margin-bottom: 12px;
+}
+
+/* =====================
+   FORMS
+===================== */
+input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  margin-bottom: 10px;
+}
+
+button {
+  background: var(--primary);
+  border: none;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* =====================
+   HABITS (HORIZONTAL)
+===================== */
+.habits {
+  list-style: none;
+}
+
+.habits-horizontal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.habits-horizontal li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #f1f5f9;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.habits-horizontal input {
+  width: 16px;
+  height: 16px;
+}
+
+/* =====================
+   CALENDAR SECTION
+===================== */
+.calendar-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.calendar-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.calendar-wrapper,
+.calendar-habits-wrapper {
+  background: #f8fafc;
+  padding: 14px;
+  border-radius: 12px;
+}
+
+/* Calendar grid */
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+}
+
+.day {
+  padding: 12px 0;
+  text-align: center;
+  border-radius: 10px;
+  background: #e5e7eb;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.day.done {
+  background: var(--accent);
+  color: white;
+}
+
+.day.missed {
+  background: #fecaca;
+  color: #7f1d1d;
+}
+
+.day.selected {
+  background: var(--primary);
+  color: white;
+  outline: 2px solid #0284c7;
+}
+
+/* =====================
+   PROGRESS
+===================== */
+.streak-label {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.streak-main {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.streak-sub {
+  font-size: 0.95rem;
+  opacity: 0.8;
+}
+
+/* =====================
+   MOBILE SIDEBAR (FIXED)
+===================== */
+@media (max-width: 768px) {
+  /* IMPORTANT: keep row layout */
+  .app {
+    flex-direction: row;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -240px;            /* exact sidebar width */
+    width: 240px;
+    height: 100vh;
+    z-index: 1000;
+    transition: left 0.3s ease;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+
+  .mobile-menu-btn {
+    display: inline-block;
+  }
+
+  .main {
+    padding: 20px;
+    width: 100%;
+  }
+
+  /* Overlay */
+  .sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 900;
+    display: none;
+  }
+
+  .sidebar-overlay.active {
+    display: block;
+  }
+
+  /* Calendar tightening */
+  .calendar {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  /* ✅ STACK CALENDAR + HABITS VERTICALLY */
+  .calendar-layout {
+    grid-template-columns: 1fr;
+  }
+
+  /* ✅ Improve spacing on mobile */
+  .calendar-wrapper,
+  .calendar-habits-wrapper {
+    padding: 12px;
+  }
+
+  /* ✅ Calendar grid already reduced – keep this */
+  .calendar {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
